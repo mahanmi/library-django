@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block header_title %}Add new Author{% endblock %}
+{% block back_button %}
+  <a href="{% url 'catalog:show-authors' %}" class="button">Back to Authors</a>
+{% endblock %}
+{% block title %}Add new Author{% endblock %}
+{% block content %}
+  <form action="{% url 'catalog:add-author' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="button ">Add Author</button>
+  </form>
+{% endblock %}

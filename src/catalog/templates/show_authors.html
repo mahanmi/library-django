@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block back_button %}
+    <a href="{% url 'catalog:home' %}" class="button">Back to Home</a>
+{% endblock %}
+{% block title %}List of all Authors{% endblock %}
+{% block content %}
+    <form action="{% url 'catalog:add-author' %}" method="get">
+        <button type="submit" class="button ">Add New Author</button>
+    </form>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Author Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>
+                        <a href="{% url 'catalog:edit-author' author.id %}">{{ author.name }}</a>
+                    </td>
+                    <td>{{ author.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

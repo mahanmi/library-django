@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block header_title %}Edit Book{% endblock %}
+{% block back_button %}
+  <a href="{% url 'catalog:show-books' %}" class="button">Back to Books</a>
+{% endblock %}
+{% block title %}Edit Book{% endblock %}
+{% block content %}
+  <form action="{% url 'catalog:edit-book' book_id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <button type="submit" class="button ">Edit Book</button>
+  </form>
+  <br>
+  <form action="{% url 'catalog:delete-book' book_id %}">
+    {% csrf_token %}
+    <button class="button delete">Delete Book</button>
+  </form>
+{% endblock %}

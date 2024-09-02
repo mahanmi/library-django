@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block header_title %}Add new Book{% endblock %}
+{% block back_button %}
+  <a href="{% url 'catalog:show-books' %}" class="button">Back to Books</a>
+{% endblock %}
+{% block title %}Add new Book{% endblock %}
+{% block content %}
+  <form action="{% url 'catalog:add-book' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <button type="submit" class="button ">Add Book</button>
+  </form>
+{% endblock %}

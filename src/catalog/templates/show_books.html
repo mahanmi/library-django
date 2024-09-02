@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block header_title %}List of all Books{% endblock %}
+{% block back_button %}
+    <a href="{% url 'catalog:home' %}" class="button">Back to Home</a>
+{% endblock %}
+{% block title %}List of all Books{% endblock %}
+{% block content %}
+    <form action="{% url 'catalog:filter-books' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button search">Search</button>
+    </form>
+    <form action="{% url 'catalog:add-book' %}" method="get">
+        <br>
+        <button type="submit" class="button">Add New Book</button>
+    </form>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Published at</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>
+                        <a href="{% url 'catalog:edit-book' book.id %}">{{ book.name }}</a>
+                    </td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.published_at }}</td>
+                    <td>{{ book.quantity }}</td>
+                    <td>{{ book.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
